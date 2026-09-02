@@ -1,0 +1,38 @@
+GET http://127.0.0.1:3000/api/v1/cats
+
+GET http://127.0.0.1:3000/api/v1/cats/1
+
+POST http://127.0.0.1:3000/api/v1/cats
+Content-Type: application/json
+
+{
+  "cat_name": "Oona",
+  "weight": 4,
+  "owner": "Ana",
+  "filename": "luna.jpg",
+  "birthdate": "01.01.2026"
+}
+
+PUT http://127.0.0.1:3000/api/v1/cats/1
+
+DELETE http://127.0.0.1:3000/api/v1/cats/1
+
+
+GET http://127.0.0.1:3000/api/v1/users
+
+GET http://127.0.0.1:3000/api/v1/users/3609
+
+POST http://127.0.0.1:3000/api/v1/users
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "username": "janedoe",
+  "email": "jane@email.com",
+  "role": "user",
+  "password": "password"
+}
+
+PUT http://127.0.0.1:3000/api/v1/users/3609
+
+DELETE http://127.0.0.1:3000/api/v1/users/3609
