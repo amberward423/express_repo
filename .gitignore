@@ -5,6 +5,6 @@ node_modules/
 .DS_Store
 
 # ignore content of uploads folder
-uploads/*
+upload/*
 # except one (empty) file to have the folder in version control
 !uploads/.gitkeep
