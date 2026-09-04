@@ -13,6 +13,32 @@ Content-Type: application/json
   "birthdate": "01.01.2026"
 }
 
+POST http://127.0.0.1:3000/api/v1/cats
+Content-Type: multipart/form-data; boundary=MyBoundary
+
+--MyBoundary
+Content-Disposition: form-data; name="cat_name"
+
+Walter Phillip
+--MyBoundary
+Content-Disposition: form-data; name="weight"
+
+6
+--MyBoundary
+Content-Disposition: form-data; name="owner"
+
+Amber
+--MyBoundary
+Content-Disposition: form-data; name="birthdate"
+
+2020-07-05
+--MyBoundary
+Content-Disposition: form-data; name="cat"; filename="walter.jpeg"
+Content-Type: image/jpeg
+
+< ./public/walter.jpeg
+--MyBoundary--
+
 PUT http://127.0.0.1:3000/api/v1/cats/1
 
 DELETE http://127.0.0.1:3000/api/v1/cats/1
