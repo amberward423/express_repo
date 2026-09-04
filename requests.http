@@ -14,6 +14,7 @@ Content-Type: application/json
 }
 
 POST http://127.0.0.1:3000/api/v1/cats
+
 Content-Type: multipart/form-data; boundary=MyBoundary
 
 --MyBoundary
@@ -37,6 +38,7 @@ Content-Disposition: form-data; name="cat"; filename="walter.jpeg"
 Content-Type: image/jpeg
 
 < ./public/walter.jpeg
+
 --MyBoundary--
 
 PUT http://127.0.0.1:3000/api/v1/cats/1
