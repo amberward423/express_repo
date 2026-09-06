@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import {createThumbnail} from '../../middlewares/upload.js';
-
+import { authorize } from '../../middlewares/auth.js';
 const upload = multer({dest: 'upload/'});
 
 import {
@@ -23,6 +23,6 @@ catRouter
 catRouter.route('/user/:id')
 .get(getCatwUser);
 
-catRouter.route('/:id').get(getCatwID).put(putCat).delete(deleteCat);
+catRouter.route('/:id').get(getCatwID).put(authorize, putCat).delete(authorize, deleteCat);
 
 export default catRouter;

@@ -42,12 +42,32 @@ const postCat = async (req, res) => {
 };
 
 const putCat = async (req, res) => {
-  const result = await modifyCat({...req.body, cat_id: req.params.id});
-  res.json({result});
+  const cat = await findCat(req.params.id);
+  if (
+    res.locals.user.user_id == cat.owner ||
+    res.locals.user.role === 'admin'
+  ) {
+    const result = await modifyCat({...req.body, cat_id: req.params.id});
+    res.json({result});
+  } else {
+    res.status(403).json({message: 'Forbidden'});
+  }
 };
 
 const deleteCat = async (req, res) => {
-  const result = await removeCat(req.params.id);
-  res.json({result});
+  const cat = await findCat(req.params.id);
+  if (!cat) {
+    res.status(404).json({message: 'Forbidden'});
+    return;
+  }
+  if (
+    res.locals.user.user_id == cat.owner ||
+    res.locals.user.role === 'admin'
+  ) {
+    const result = await removeCat(req.params.id);
+    res.json({result});
+  } else {
+    res.status(403).json({message: 'Forbidden'});
+  }
 };
 export {getCat, getCatwID, postCat, putCat, deleteCat, getCatwUser};
