@@ -18,9 +18,11 @@ const getUserwID = async (req, res) => {
 
   if (user) {
     res.json(user);
-  } else {
-    res.sendStatus(404);
-  }
+ } else {
+  const error = new Error('User not found');
+  error.status = 404;
+  throw error;
+}
 };
 const getMe = async (req, res) => {
   res.json(res.locals.user);
@@ -55,11 +57,13 @@ const login = async (req, res) => {
 
       res.json({message: 'Success', token, user: payload});
     } else {
-      res.status(403).json({message: 'Invalid Credentials'});
-    }
+    const error = new Error('Invalid Credentials');
+    error.status = 403;
+    throw error;}
   } else {
-    res.status(403).json({message: 'Invalid Credentials'});
-  }
+    const error = new Error('Invalid Credentials');
+    error.status = 403;
+    throw error;}
 };
 const putUser = async (req, res) => {
   if (res.locals.user.user_id == Number(req.params.id) || res.locals.user.role === 'admin'){
@@ -67,8 +71,9 @@ const putUser = async (req, res) => {
   res.json({result});
   }
   else{
-    res.status(403).json({message: 'Forbidden'});
-  }
+const error = new Error('Forbidden');
+error.status = 403;
+throw error;  }
 };
 
 const deleteUser = async (req, res) => {
@@ -76,8 +81,9 @@ const deleteUser = async (req, res) => {
     const result = await removeUser(req.params.id);
   res.json({result});
 }else{
-    res.status(403).json({message: 'Forbidden'});
-  }
+  const error = new Error('Forbidden');
+  error.status = 403;
+  throw error;  }
 };
 
 export {getUser, getUserwID, postUser, putUser, deleteUser, login, getMe};
